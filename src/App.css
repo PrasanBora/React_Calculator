@@ -18,7 +18,7 @@ body{
     /* justify-content: center; */
     grid-template-columns: repeat(4,6rem);
     grid-template-rows: minmax(7rem ,auto) repeat(5,6rem);
-    /* background-color: rgba(255,255,255, 0.75); */
+    /* background-color: rgba(255,255,255, 0.55); */
     /* background-color: rgb(191,243,239); */
 
 }
@@ -44,7 +44,8 @@ body{
     grid-column: span 2;
 }
 .output
-{
+{   
+    border-radius: 6px;
     grid-column: 1/-1;
     border-bottom: 2px solid white;
     background-color: rgba(0,0,0, 0.75);

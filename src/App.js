@@ -8,17 +8,27 @@ function App() {
   const ops =['÷','*','+','-','.'];
   const updateCalc = value =>
   {
-    if(calc.includes('.') && value==='.')
-    {
-      alert("Check for Decimal Number !!");
-      // return;
+    // if(calc.includes('.') && value==='.')
+    // {
+    //   alert("Check for Decimal Number !!");
+    //   // return;
+    // }
+   
+    const isnumber = (value) =>{
+       if(value=='1'|| value=='2'||value=='3'||value=='4'||value=='5'||value=='6'||
+       value=='7'||value=='8'||value=='9')
+       return true;
     }
+
     if(
        (ops.includes(value) && calc === '')
     || (ops.includes(value) && ops.includes(calc.slice(-1)))
     )
     return;
-
+    
+    if(calc==='0' && isnumber(value))
+     setCalc(value);
+     else 
     setCalc (calc+value);
 
     // if(!ops.includes(value))
