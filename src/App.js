@@ -1,33 +1,79 @@
 
+import {useState} from 'react';
 import "./App.css"
 function App() {
+  const [calc , setCalc]=useState("");
+  const [result,setResult]=useState("");
+
+  const ops =['÷','*','+','-','.'];
+  const updateCalc = value =>
+  {
+    if(calc.includes('.') && value==='.')
+    {
+      alert("Check for Decimal Number !!");
+      // return;
+    }
+    if(
+       (ops.includes(value) && calc === '')
+    || (ops.includes(value) && ops.includes(calc.slice(-1)))
+    )
+    return;
+
+    setCalc (calc+value);
+
+    // if(!ops.includes(value))
+    // {
+    //   setResult(eval(calc+value).toString());
+    // }
+  }
+
+  const calculate = () => {
+    setResult(eval(calc).toString());
+    setCalc(eval(calc).toString());
+  }
+  
+  const allClear =()=> {
+    setResult((0).toString());
+    setCalc('');
+  }
+  
+  const deleteLast =() => {
+    if(calc ==='')
+    return;
+
+    const value = calc.slice(0,-1);
+    setCalc(value);
+  }
+
   return (
+    <div className="main">
     <div className="calculator-grid">
-    <div className="output">
-      <div className="previous"></div>
-      <div className="current"></div>
-    </div>
-    <button className="span-two">AC</button>
-    <button className="">DEL</button>
-    <button className="">÷</button>
-    <button className="">1</button>
-    <button className="">2</button>
-    <button className="">3</button>
-    <button className="">*</button>
-    <button className="">4</button>
-    <button className="">5</button>
-    <button className="">6</button>
-    <button className="">+</button>
-    <button className="">7</button>
-    <button className="">8</button>
-    <button className="">9</button>
-    <button className="">-</button>
-    <button className="">.</button>
-    <button className="">0</button>
-    <button className="span-two">=</button>
+      <div className="output">
+        <div className="previous">{calc}</div>
+        <div className="current">{result || "0"}</div>
+      </div>
+      <button onClick={allClear}  className="span-two">AC</button>
+      <button onClick={ deleteLast} className="">DEL</button>
+      <button onClick = {()=> updateCalc('÷')} >÷</button>
+      <button onClick = {()=> updateCalc('1')}>1</button>
+      <button onClick = {()=> updateCalc('2')}>2</button>
+      <button onClick = {()=> updateCalc('3')}>3</button>
+      <button onClick = {()=> updateCalc('*')} >*</button>
+      <button onClick = {()=> updateCalc('4')} >4</button>
+      <button onClick = {()=> updateCalc('5')} >5</button>
+      <button onClick = {()=> updateCalc('6')} >6</button>
+      <button onClick = {()=> updateCalc('+')} >+</button>
+      <button onClick = {()=> updateCalc('7')} >7</button>
+      <button onClick = {()=> updateCalc('8')} >8</button>
+      <button onClick = {()=> updateCalc('9')} >9</button>
+      <button onClick = {()=> updateCalc('-')} >-</button>
+      <button onClick = {()=> updateCalc('.')} >.</button>
+      <button onClick = {()=> updateCalc('0')} >0</button>
+      <button onClick={calculate} className="span-two">=</button>
     
 
     </div>
+    </div> 
   );
 }
 
